@@ -20,19 +20,33 @@ export const useDataState = () => {
 
   const { state, dispatch } = context;
 
+  const addNewComment = useCallback(
+    (comment: Comment) => {
+      dispatch({ type: 'ADD_COMMENT', payload: comment });
+    },
+    [dispatch]
+  );
+
+  const addNewSuggestion = useCallback(
+    (suggestion: Suggestion) => {
+      dispatch({ type: 'ADD_SUGGESTION', payload: suggestion });
+    },
+    [dispatch]
+  );
+
   const generateComment = useCallback((sid: string): Comment => {
     return {
       id: generateId(),
       sid: sid,
       author: getRandomElement(NameList),
-      message: chance.paragraph(),
+      message: chance.paragraph({ sentences: 1 }),
       created_at: new Date(),
     };
   }, []);
 
   const generateSuggestion = useCallback((): Suggestion => {
     const sid = generateId();
-    const commentCount = getRandomNumber(3, 5);
+    const commentCount = getRandomNumber(2, 4);
 
     const comments = Array.from({ length: commentCount }, () =>
       generateComment(sid)
@@ -42,7 +56,7 @@ export const useDataState = () => {
       id: sid,
       author: getRandomElement(NameList),
       title: chance.sentence({ words: 7 }),
-      description: chance.paragraph(),
+      description: chance.paragraph({ sentences: 3 }),
       created_at: new Date(),
       comments: comments,
     };
@@ -57,5 +71,20 @@ export const useDataState = () => {
     dispatch({ type: 'SET_SUGGESTIONS', payload: mockData });
   }, [dispatch, generateSuggestion]);
 
-  return { ...state, generateComment, generateMockData, generateSuggestion };
+  const selectSuggestion = useCallback(
+    (id: string | null) => {
+      dispatch({ type: 'SET_SELECTED', payload: id });
+    },
+    [dispatch]
+  );
+
+  return {
+    ...state,
+    addNewComment,
+    addNewSuggestion,
+    generateComment,
+    generateMockData,
+    generateSuggestion,
+    selectSuggestion,
+  };
 };

@@ -18,6 +18,14 @@ export const generateId = () => {
   return chance.guid({ version: 4 });
 };
 
+export const getNameInitials = (name: string) => {
+  const names = name.split(' ');
+  const firstInitial = names[0]?.[0].toUpperCase() || '';
+  const lastInitial = names[names.length - 1]?.[0].toUpperCase() || '';
+
+  return firstInitial + lastInitial;
+};
+
 export const getRandomElement = <T>(a: T[]) => {
   return a[Math.floor(Math.random() * a.length)];
 };
