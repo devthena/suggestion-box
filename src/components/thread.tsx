@@ -2,9 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Send } from '@mui/icons-material';
 
 import {
-  Avatar,
   Button,
-  Chip,
   Container,
   IconButton,
   InputAdornment,
@@ -13,7 +11,9 @@ import {
 } from '@mui/material';
 
 import { useDataState } from '../hooks';
-import { formatDate, generateId, getNameInitials } from '../lib/utils';
+import { generateId } from '../lib/utils';
+
+import { CommentBox } from './comment';
 
 import styles from '../styles/thread.module.scss';
 
@@ -93,26 +93,10 @@ export const SuggestionThread: React.FC = () => {
             const isOriginalAuthor = selected.author === comment.author;
 
             return (
-              <Stack className={styles.comment} key={comment.id}>
-                <Stack alignItems="center" direction="row">
-                  <Avatar className={styles.avatar}>
-                    {getNameInitials(comment.author)}
-                  </Avatar>
-                  <h4>{comment.author}</h4>
-                  {isOriginalAuthor && (
-                    <Chip
-                      className={styles.chip}
-                      label="Author"
-                      variant="outlined"
-                      size="small"
-                    />
-                  )}
-                  <p className={styles.date}>
-                    {formatDate(comment.created_at)}
-                  </p>
-                </Stack>
-                <p>{comment.message}</p>
-              </Stack>
+              <CommentBox
+                comment={comment}
+                isOriginalAuthor={isOriginalAuthor}
+              />
             );
           })}
         </Stack>

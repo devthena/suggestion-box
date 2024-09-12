@@ -27,3 +27,8 @@ export type ActionType =
   | { type: 'SET_MODAL' }
   | { type: 'SET_SELECTED'; payload: string | null }
   | { type: 'SET_SUGGESTIONS'; payload: Suggestion[] };
+
+export type ContextType = {
+  state: DataState;
+  dispatch: React.Dispatch<ActionType>;
+};

@@ -63,7 +63,7 @@ export const useDataState = () => {
   }, [generateComment]);
 
   const generateMockData = useCallback(() => {
-    const suggestionCount = getRandomNumber(7, 10);
+    const suggestionCount = getRandomNumber(3, 7);
     const mockData = Array.from({ length: suggestionCount }, () =>
       generateSuggestion()
     );
