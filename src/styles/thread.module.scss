@@ -1,0 +1,70 @@
+:global(.MuiContainer-root).thread {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  & input {
+    font-family: 'Figtree', sans-serif;
+  }
+
+  & svg {
+    fill: var(--dark-blue);
+  }
+}
+
+:global(.MuiStack-root).suggestion {
+  margin-bottom: 24px;
+
+  & > p {
+    font-size: 18px;
+    margin: 0;
+  }
+}
+
+:global(.MuiButtonBase-root).button_light {
+  color: var(--dark-blue);
+}
+
+:global(.MuiStack-root).comment {
+  margin-bottom: 17px;
+
+  &:first-child {
+    margin-top: 36px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  & h4 {
+    font-weight: 600;
+    margin: 0 7px 0 0;
+  }
+}
+
+:global(.MuiAvatar-root).avatar {
+  color: var(--dark-blue);
+  background-color: var(--light-blue);
+  font-family: 'Figtree', sans-serif;
+  font-size: 12px;
+  height: 28px;
+  margin-right: 5px;
+  width: 28px;
+}
+
+:global(.MuiChip-root).chip {
+  border-color: var(--dark-blue);
+  color: var(--dark-blue);
+  font-family: 'Figtree', sans-serif;
+  margin-right: 7px;
+}
+
+.date {
+  font-size: 12px;
+  margin: 0;
+}

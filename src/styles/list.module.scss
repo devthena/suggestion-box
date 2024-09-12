@@ -1,0 +1,52 @@
+:global(.MuiContainer-root).list {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+}
+
+:global(.MuiPaper-root).cardBox {
+  cursor: pointer;
+  margin-bottom: 10px;
+
+  &.selected {
+    border: 1px solid var(--dark-blue);
+  }
+
+  & svg {
+    fill: var(--dark-blue);
+  }
+}
+
+:global(.MuiCardContent-root).card:last-child {
+  padding-bottom: 10px;
+
+  & > h2 {
+    margin: 10px 0;
+  }
+
+  & > hr {
+    margin: 10px 0;
+  }
+
+  & > p:last-child {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  & .commentCount {
+    margin: 0 5px 0 0;
+  }
+}
+
+:global(.MuiAvatar-root).avatar {
+  color: var(--dark-blue);
+  background-color: var(--light-blue);
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px;
+  margin-right: 5px;
+}

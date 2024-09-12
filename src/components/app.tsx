@@ -8,6 +8,8 @@ import { SuggestionCreate } from './create';
 import { SuggestionList } from './list';
 import { SuggestionThread } from './thread';
 
+import styles from '../styles/app.module.scss';
+
 export const App: React.FC = () => {
   const {
     suggestions,
@@ -30,24 +32,28 @@ export const App: React.FC = () => {
   if (!suggestions.size) return <Container>Loading...</Container>;
 
   return (
-    <Container>
-      <Container>
+    <Container className={styles.main}>
+      <Container className={styles.header}>
         <h1>Suggestion Box</h1>
         <Stack direction="row" spacing={2}>
           <Button
+            className={styles.button}
             endIcon={<AddCircleOutline />}
             onClick={toggleModal}
             variant="contained"
-            size="large">
-            NEW SUGGESTION
+            size="medium">
+            ADD SUGGESTION
           </Button>
-          <Button onClick={handleSuggestionGenerate} size="small">
+          <Button
+            className={styles.button_light}
+            onClick={handleSuggestionGenerate}
+            size="small">
             Generate Suggestion
           </Button>
         </Stack>
         <SuggestionCreate />
       </Container>
-      <Stack direction="row">
+      <Stack className={styles.body} direction="row">
         <SuggestionList />
         <SuggestionThread />
       </Stack>

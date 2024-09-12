@@ -4,6 +4,7 @@ import { Send } from '@mui/icons-material';
 import {
   Avatar,
   Button,
+  Chip,
   Container,
   IconButton,
   InputAdornment,
@@ -14,19 +15,21 @@ import {
 import { useDataState } from '../hooks';
 import { formatDate, generateId, getNameInitials } from '../lib/utils';
 
+import styles from '../styles/thread.module.scss';
+
 export const SuggestionThread: React.FC = () => {
   const { selected, addNewComment, generateComment } = useDataState();
 
   const [commentText, setCommentText] = useState('');
 
-  const handleCommentGenerate = () => {
+  const handleGenerate = () => {
     if (!selected) return;
 
     const newComment = generateComment(selected.id);
     addNewComment(newComment);
   };
 
-  const handleCommentSend = useCallback(() => {
+  const handleSend = useCallback(() => {
     if (!selected) return;
 
     const newComment = commentText.trim();
@@ -43,52 +46,75 @@ export const SuggestionThread: React.FC = () => {
     setCommentText('');
   }, [commentText, selected, addNewComment]);
 
-  const handleCommentKeyPress = useCallback(
+  const handleKeyPress = useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key !== 'Enter') return;
-      handleCommentSend();
+
+      event.preventDefault();
+      handleSend();
     },
-    [handleCommentSend]
+    [handleSend]
   );
 
   if (!selected) return null;
 
   return (
-    <Container>
-      <div>
-        <h3>{selected.title}</h3>
+    <Container className={styles.thread}>
+      <Stack className={styles.suggestion}>
+        <h2>{selected.title}</h2>
         <p>{selected.description}</p>
-      </div>
+      </Stack>
       <div>
-        <h4>Comments:</h4>
+        <h3>Comments:</h3>
         <Stack direction="row" spacing={2}>
           <OutlinedInput
             fullWidth
             onChange={e => setCommentText(e.target.value)}
-            onKeyDown={handleCommentKeyPress}
-            placeholder="Type your message..."
+            onKeyDown={handleKeyPress}
+            placeholder="Enter your comment..."
             endAdornment={
               <InputAdornment position="end">
-                <IconButton onClick={handleCommentSend} color="primary">
+                <IconButton onClick={handleSend} color="primary">
                   <Send />
                 </IconButton>
               </InputAdornment>
             }
             value={commentText}
           />
-          <Button onClick={handleCommentGenerate} size="small">
+          <Button
+            className={styles.button_light}
+            onClick={handleGenerate}
+            size="small">
             Generate Comment
           </Button>
         </Stack>
         <Stack>
-          {[...selected.comments].reverse().map(comment => (
-            <div key={comment.id}>
-              <Avatar>{getNameInitials(comment.author)}</Avatar>
-              <h5>{comment.author}</h5>
-              {formatDate(comment.created_at)}
-              <p>{comment.message}</p>
-            </div>
-          ))}
+          {[...selected.comments].reverse().map(comment => {
+            const isOriginalAuthor = selected.author === comment.author;
+
+            return (
+              <Stack className={styles.comment} key={comment.id}>
+                <Stack alignItems="center" direction="row">
+                  <Avatar className={styles.avatar}>
+                    {getNameInitials(comment.author)}
+                  </Avatar>
+                  <h4>{comment.author}</h4>
+                  {isOriginalAuthor && (
+                    <Chip
+                      className={styles.chip}
+                      label="Author"
+                      variant="outlined"
+                      size="small"
+                    />
+                  )}
+                  <p className={styles.date}>
+                    {formatDate(comment.created_at)}
+                  </p>
+                </Stack>
+                <p>{comment.message}</p>
+              </Stack>
+            );
+          })}
         </Stack>
       </div>
     </Container>

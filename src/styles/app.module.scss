@@ -1,0 +1,30 @@
+:global(.MuiContainer-root).main {
+  display: flex;
+  flex-direction: column;
+  height: -webkit-fill-available;
+  height: 100vh;
+  padding-bottom: 24px;
+}
+
+:global(.MuiContainer-root).header {
+  padding: 24px;
+
+  & > h1 {
+    margin-top: 0;
+    text-align: center;
+  }
+}
+
+:global(.MuiStack-root).body {
+  overflow: hidden;
+}
+
+:global(.MuiButtonBase-root).button {
+  background-color: var(--dark-blue);
+  font-family: 'Figtree', sans-serif;
+  font-weight: 600;
+}
+
+:global(.MuiButtonBase-root).button_light {
+  color: var(--dark-blue);
+}

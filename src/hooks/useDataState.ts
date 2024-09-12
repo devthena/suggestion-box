@@ -39,7 +39,7 @@ export const useDataState = () => {
       id: generateId(),
       sid: sid,
       author: getRandomElement(NameList),
-      message: chance.paragraph({ sentences: 1 }),
+      message: chance.sentence({ words: 10 }),
       created_at: new Date(),
     };
   }, []);
@@ -79,6 +79,7 @@ export const useDataState = () => {
   );
 
   const toggleModal = useCallback(() => {
+    console.log('toggle modal');
     dispatch({ type: 'SET_MODAL' });
   }, [dispatch]);
 
