@@ -2,6 +2,7 @@ import { createContext, ReactNode, useReducer } from 'react';
 import { ActionType, DataState, Suggestion } from './types';
 
 const initialState: DataState = {
+  isModalOpen: false,
   selected: null,
   suggestions: new Map<string, Suggestion>(),
 };
@@ -30,14 +31,26 @@ const dataReducer = (state: DataState, action: ActionType): DataState => {
           action.payload
         ),
       };
+    case 'SET_MODAL':
+      return {
+        ...state,
+        isModalOpen: !state.isModalOpen,
+      };
     case 'SET_SELECTED':
       if (action.payload) {
-        const selectedSuggestion =
-          state.suggestions.get(action.payload) ?? null;
+        let newSelected = null;
+        const suggestion = state.suggestions.get(action.payload);
+
+        if (!suggestion) {
+          newSelected = null;
+        } else {
+          if (suggestion.id === state.selected?.id) newSelected = null;
+          else newSelected = suggestion;
+        }
 
         return {
           ...state,
-          selected: selectedSuggestion,
+          selected: newSelected,
         };
       }
       return {

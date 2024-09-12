@@ -1,4 +1,5 @@
 export interface DataState {
+  isModalOpen: boolean;
   selected: Suggestion | null;
   suggestions: Map<string, Suggestion>;
 }
@@ -23,5 +24,6 @@ export interface Comment {
 export type ActionType =
   | { type: 'ADD_COMMENT'; payload: Comment }
   | { type: 'ADD_SUGGESTION'; payload: Suggestion }
+  | { type: 'SET_MODAL' }
   | { type: 'SET_SELECTED'; payload: string | null }
   | { type: 'SET_SUGGESTIONS'; payload: Suggestion[] };

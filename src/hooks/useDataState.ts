@@ -78,6 +78,10 @@ export const useDataState = () => {
     [dispatch]
   );
 
+  const toggleModal = useCallback(() => {
+    dispatch({ type: 'SET_MODAL' });
+  }, [dispatch]);
+
   return {
     ...state,
     addNewComment,
@@ -86,5 +90,6 @@ export const useDataState = () => {
     generateMockData,
     generateSuggestion,
     selectSuggestion,
+    toggleModal,
   };
 };
