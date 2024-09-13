@@ -11,6 +11,13 @@ import {
   getRandomNumber,
 } from '../lib/utils';
 
+/**
+ * Custom hook that provides state management and utility functions to interact
+ * with suggestions and comments in the application
+ *
+ * @throws Will throw an error if not used within a `DataProvider`
+ * @returns Current state and functions to manage comments, suggestions, and the modal
+ */
 export const useDataState = () => {
   const context = useContext(DataContext);
 
@@ -20,6 +27,10 @@ export const useDataState = () => {
 
   const { state, dispatch } = context;
 
+  /**
+   * Adds a new comment to the selected suggestion
+   * @param comment - The comment to be added
+   */
   const addNewComment = useCallback(
     async (comment: Comment) => {
       dispatch({ type: 'ADD_COMMENT', payload: comment });
@@ -27,6 +38,10 @@ export const useDataState = () => {
     [dispatch]
   );
 
+  /**
+   * Adds a new suggestion to the collection and selects it
+   * @param suggestion - The suggestion to be added
+   */
   const addNewSuggestion = useCallback(
     async (suggestion: Suggestion) => {
       await dispatch({ type: 'ADD_SUGGESTION', payload: suggestion });
@@ -35,6 +50,11 @@ export const useDataState = () => {
     [dispatch]
   );
 
+  /**
+   * Generates a new comment with random data for a specific suggestion
+   * @param sid - The ID of the suggestion the comment belongs to
+   * @returns A new randomly generated comment
+   */
   const generateComment = useCallback((sid: string): Comment => {
     return {
       id: generateId(),
@@ -45,6 +65,10 @@ export const useDataState = () => {
     };
   }, []);
 
+  /**
+   * Generates a new suggestion with random data and associated comments
+   * @returns A new randomly generated suggestion
+   */
   const generateSuggestion = useCallback((): Suggestion => {
     const sid = generateId();
     const commentCount = getRandomNumber(2, 4);
@@ -63,6 +87,7 @@ export const useDataState = () => {
     };
   }, [generateComment]);
 
+  // Generates random suggestions and updates the global state
   const generateMockData = useCallback(() => {
     const suggestionCount = getRandomNumber(3, 7);
     const mockData = Array.from({ length: suggestionCount }, () =>
@@ -72,6 +97,10 @@ export const useDataState = () => {
     dispatch({ type: 'SET_SUGGESTIONS', payload: mockData });
   }, [dispatch, generateSuggestion]);
 
+  /**
+   * Selects a suggestion by its ID or clears the selection
+   * @param id - The ID of the suggestion to select, or null to clear selection
+   */
   const selectSuggestion = useCallback(
     (id: string | null) => {
       dispatch({ type: 'SET_SELECTED', payload: id });
@@ -79,6 +108,7 @@ export const useDataState = () => {
     [dispatch]
   );
 
+  // Updates the modal state to open or closed
   const toggleModal = useCallback(() => {
     dispatch({ type: 'SET_MODAL' });
   }, [dispatch]);

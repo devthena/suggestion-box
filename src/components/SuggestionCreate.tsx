@@ -7,6 +7,12 @@ import { generateId } from '../lib/utils';
 
 import styles from '../styles/create.module.scss';
 
+/**
+ * The modal component for users to create and submit new suggestions. It includes
+ * input fields for a title and a description, and a submit button to send the
+ * suggestion. Users can also submit the suggestion by pressing the "Enter" key.
+ * @component
+ */
 export const SuggestionCreate: React.FC = () => {
   const { isModalOpen, addNewSuggestion, toggleModal } = useDataState();
 

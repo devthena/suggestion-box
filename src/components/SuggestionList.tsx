@@ -16,6 +16,11 @@ import { formatDate, getNameInitials } from '../lib/utils';
 
 import styles from '../styles/list.module.scss';
 
+/**
+ * The component that displays the collection of suggestions. Each suggestion is
+ * shown in a card format with its title, author, comment count, and posting date.
+ * The component allows users to select a suggestion by clicking on the card.
+ */
 export const SuggestionList: React.FC = () => {
   const { selected, suggestions, selectSuggestion } = useDataState();
 

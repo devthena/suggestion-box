@@ -16,6 +16,10 @@ import { CommentBox } from './CommentBox';
 
 import styles from '../styles/thread.module.scss';
 
+/**
+ * This component displays the details of the selected suggestion
+ * along with its comments and a form for adding new comments
+ */
 export const SuggestionThread: React.FC = () => {
   const { selected, addNewComment } = useDataState();
 

@@ -7,6 +7,12 @@ import { SuggestionCreate } from './SuggestionCreate';
 
 import styles from '../styles/header.module.scss';
 
+/**
+ * Provides the interface for adding new suggestions and generating mock data
+ * such as suggestions and comments. It also contains navigation for going back
+ * to the suggestion list from a selected suggestion.
+ * @component
+ */
 export const Header: React.FC = () => {
   const {
     selected,

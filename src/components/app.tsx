@@ -9,6 +9,11 @@ import { SuggestionThread } from './SuggestionThread';
 
 import styles from '../styles/app.module.scss';
 
+/**
+ * The main entry point of the application that manages the layout of
+ * the header, suggestion list, and suggestion thread
+ * @component
+ */
 export const App: React.FC = () => {
   const { suggestions, generateMockData } = useDataState();
   const [isDataGenerated, setIsDataGenerated] = useState<boolean>(false);

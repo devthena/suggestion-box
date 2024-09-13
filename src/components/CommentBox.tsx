@@ -11,6 +11,15 @@ type CommentBoxProps = {
   isOriginalAuthor: boolean;
 };
 
+/**
+ * Displays a single comment with an avatar, author name, creation date,
+ * and the comment message. If the comment is from the original author of
+ * the suggestion, it shows an "Author" chip.
+ *
+ * @component
+ * @param comment - The comment data containing author, message, and timestamp
+ * @param isOriginalAuthor - Indicates if the comment author is the original suggestion author
+ */
 export const CommentBox: React.FC<CommentBoxProps> = ({
   comment,
   isOriginalAuthor,
