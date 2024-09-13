@@ -22,4 +22,5 @@ export const NameList: string[] = [
   'Aleksandra Zaryanova',
   'Tekhartha Zenyatta',
   'Kiriko Shirokawa',
+  'Angela Ziegler',
 ];

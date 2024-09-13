@@ -12,7 +12,7 @@ import {
 import { useDataState } from '../hooks';
 import { generateId } from '../lib/utils';
 
-import { CommentBox } from './comment';
+import { CommentBox } from './CommentBox';
 
 import styles from '../styles/thread.module.scss';
 

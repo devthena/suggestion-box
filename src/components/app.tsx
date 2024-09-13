@@ -3,11 +3,11 @@ import { Container, Stack } from '@mui/material';
 
 import { useDataState } from '../hooks';
 
-import { SuggestionList } from './list';
-import { SuggestionThread } from './thread';
+import { Header } from './Header';
+import { SuggestionList } from './SuggestionList';
+import { SuggestionThread } from './SuggestionThread';
 
 import styles from '../styles/app.module.scss';
-import { Header } from './header';
 
 export const App: React.FC = () => {
   const { suggestions, generateMockData } = useDataState();

@@ -3,7 +3,7 @@ import { AddCircleOutline, KeyboardBackspace } from '@mui/icons-material';
 import { Button, Container, Stack } from '@mui/material';
 
 import { useDataState } from '../hooks';
-import { SuggestionCreate } from './create';
+import { SuggestionCreate } from './SuggestionCreate';
 
 import styles from '../styles/header.module.scss';
 

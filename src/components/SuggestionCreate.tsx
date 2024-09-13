@@ -49,6 +49,7 @@ export const SuggestionCreate: React.FC = () => {
             fullWidth
             onChange={e => setTitle(e.target.value)}
             placeholder="Enter your title..."
+            value={title}
             variant="outlined"
           />
           <h3>Description</h3>
@@ -59,6 +60,7 @@ export const SuggestionCreate: React.FC = () => {
             onKeyDown={handleKeyPress}
             placeholder="Enter your description..."
             rows={3}
+            value={description}
             variant="outlined"
           />
         </Box>
