@@ -7,6 +7,14 @@
     width: 0;
     background: transparent;
   }
+
+  &.hasSelected {
+    display: none;
+
+    @media screen and (min-width: 480px) {
+      display: block;
+    }
+  }
 }
 
 :global(.MuiPaper-root).cardBox {
@@ -19,6 +27,13 @@
 
   & svg {
     fill: var(--dark-blue);
+    height: 20px;
+    width: 20px;
+
+    @media screen and (min-width: 480px) {
+      height: 24px;
+      width: 24px;
+    }
   }
 }
 
@@ -26,20 +41,25 @@
   padding-bottom: 10px;
 
   & > h2 {
+    font-size: 20px;
     margin: 10px 0;
+
+    @media screen and (min-width: 480px) {
+      font-size: 24px;
+    }
   }
 
   & > hr {
     margin: 10px 0;
   }
 
-  & > p:last-child {
-    font-size: 12px;
-    margin: 0;
-  }
-
   & .commentCount {
     margin: 0 5px 0 0;
+  }
+
+  & > .date {
+    font-size: 12px;
+    margin: 0;
   }
 }
 
@@ -47,6 +67,14 @@
   color: var(--dark-blue);
   background-color: var(--light-blue);
   font-family: 'Figtree', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
+  height: 32px;
   margin-right: 5px;
+  width: 32px;
+
+  @media screen and (min-width: 480px) {
+    font-size: 16px;
+    height: 40px;
+    width: 40px;
+  }
 }

@@ -16,7 +16,7 @@ export const CommentBox: React.FC<CommentBoxProps> = ({
   isOriginalAuthor,
 }) => {
   return (
-    <Stack className={styles.comment} key={comment.id}>
+    <Stack className={styles.comment}>
       <Stack alignItems="center" direction="row">
         <Avatar className={styles.avatar}>
           {getNameInitials(comment.author)}

@@ -1,9 +1,32 @@
 :global(.MuiContainer-root).header {
-  padding: 24px;
+  padding: 24px 16px;
+
+  @media screen and (min-width: 480px) {
+    padding: 24px;
+  }
 
   & > h1 {
+    font-size: 26px;
     margin-top: 0;
     text-align: center;
+
+    @media screen and (min-width: 480px) {
+      font-size: 32px;
+    }
+  }
+}
+
+:global(.MuiStack-root).hasSelected {
+  display: none;
+
+  @media screen and (min-width: 480px) {
+    display: flex;
+  }
+}
+
+:global(.MuiButtonBase-root).back {
+  @media screen and (min-width: 480px) {
+    display: none;
   }
 }
 
@@ -15,4 +38,5 @@
 
 :global(.MuiButtonBase-root).button_light {
   color: var(--dark-blue);
+  font-family: 'Figtree', sans-serif;
 }

@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { Send } from '@mui/icons-material';
 
 import {
-  Button,
   Container,
   IconButton,
   InputAdornment,
@@ -18,16 +17,9 @@ import { CommentBox } from './comment';
 import styles from '../styles/thread.module.scss';
 
 export const SuggestionThread: React.FC = () => {
-  const { selected, addNewComment, generateComment } = useDataState();
+  const { selected, addNewComment } = useDataState();
 
   const [commentText, setCommentText] = useState('');
-
-  const handleGenerate = () => {
-    if (!selected) return;
-
-    const newComment = generateComment(selected.id);
-    addNewComment(newComment);
-  };
 
   const handleSend = useCallback(() => {
     if (!selected) return;
@@ -64,14 +56,10 @@ export const SuggestionThread: React.FC = () => {
         <h2>{selected.title}</h2>
         <p>{selected.description}</p>
       </Stack>
-      <div>
+      <Stack>
         <h3>Comments:</h3>
         <Stack direction="row" spacing={2}>
           <OutlinedInput
-            fullWidth
-            onChange={e => setCommentText(e.target.value)}
-            onKeyDown={handleKeyPress}
-            placeholder="Enter your comment..."
             endAdornment={
               <InputAdornment position="end">
                 <IconButton onClick={handleSend} color="primary">
@@ -79,14 +67,12 @@ export const SuggestionThread: React.FC = () => {
                 </IconButton>
               </InputAdornment>
             }
+            fullWidth
+            onChange={e => setCommentText(e.target.value)}
+            onKeyDown={handleKeyPress}
+            placeholder="Enter your comment..."
             value={commentText}
           />
-          <Button
-            className={styles.button_light}
-            onClick={handleGenerate}
-            size="small">
-            Generate Comment
-          </Button>
         </Stack>
         <Stack>
           {[...selected.comments].reverse().map(comment => {
@@ -96,11 +82,12 @@ export const SuggestionThread: React.FC = () => {
               <CommentBox
                 comment={comment}
                 isOriginalAuthor={isOriginalAuthor}
+                key={comment.id}
               />
             );
           })}
         </Stack>
-      </div>
+      </Stack>
     </Container>
   );
 };

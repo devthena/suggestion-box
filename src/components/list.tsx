@@ -20,7 +20,10 @@ export const SuggestionList: React.FC = () => {
   const { selected, suggestions, selectSuggestion } = useDataState();
 
   return (
-    <Container className={styles.list}>
+    <Container
+      className={
+        selected ? `${styles.list} ${styles.hasSelected}` : styles.list
+      }>
       {[...suggestions.values()].reverse().map((suggestion: Suggestion) => {
         const isSelected = selected?.id === suggestion.id;
 
@@ -45,12 +48,14 @@ export const SuggestionList: React.FC = () => {
                 <Stack alignItems="center" direction="row">
                   <p className={styles.commentCount}>
                     {suggestion.comments.length}
-                  </p>{' '}
+                  </p>
                   <Comment />
                 </Stack>
               </Stack>
               <Divider />
-              <p>Posted on {formatDate(suggestion.created_at)}</p>
+              <p className={styles.date}>
+                Posted on {formatDate(suggestion.created_at)}
+              </p>
             </CardContent>
           </Card>
         );

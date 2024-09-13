@@ -6,20 +6,30 @@ export const dataReducer = (
 ): DataState => {
   switch (action.type) {
     case 'ADD_COMMENT':
-      const selectedSuggestion = state.suggestions.get(action.payload.sid);
-      if (selectedSuggestion) {
-        selectedSuggestion.comments.push(action.payload);
+      const suggestion = state.suggestions.get(action.payload.sid);
 
-        return {
-          ...state,
-          suggestions: new Map(state.suggestions).set(
-            action.payload.sid,
-            selectedSuggestion
-          ),
-        };
-      }
-      return state;
+      if (!suggestion) return state;
+
+      const commentExists = suggestion.comments.some(
+        comment => comment.id === action.payload.id
+      );
+
+      if (commentExists) return state;
+
+      const updatedComments = [...suggestion.comments, action.payload];
+      const updatedSuggestion = { ...suggestion, comments: updatedComments };
+
+      return {
+        ...state,
+        selected: updatedSuggestion,
+        suggestions: new Map(state.suggestions).set(
+          action.payload.sid,
+          updatedSuggestion
+        ),
+      };
     case 'ADD_SUGGESTION':
+      if (state.suggestions.has(action.payload.id)) return state;
+
       return {
         ...state,
         suggestions: new Map(state.suggestions).set(
@@ -37,11 +47,8 @@ export const dataReducer = (
         let newSelected = null;
         const suggestion = state.suggestions.get(action.payload);
 
-        if (!suggestion) {
-          newSelected = null;
-        } else {
-          if (suggestion.id === state.selected?.id) newSelected = null;
-          else newSelected = suggestion;
+        if (suggestion && suggestion.id !== state.selected?.id) {
+          newSelected = suggestion;
         }
 
         return {
@@ -49,11 +56,14 @@ export const dataReducer = (
           selected: newSelected,
         };
       }
+
       return {
         ...state,
         selected: null,
       };
     case 'SET_SUGGESTIONS':
+      if (state.suggestions.size > 0) return state;
+
       const updatedSuggestions = new Map(state.suggestions);
 
       action.payload.forEach(suggestion => {

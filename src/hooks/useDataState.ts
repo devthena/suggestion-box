@@ -21,15 +21,16 @@ export const useDataState = () => {
   const { state, dispatch } = context;
 
   const addNewComment = useCallback(
-    (comment: Comment) => {
+    async (comment: Comment) => {
       dispatch({ type: 'ADD_COMMENT', payload: comment });
     },
     [dispatch]
   );
 
   const addNewSuggestion = useCallback(
-    (suggestion: Suggestion) => {
-      dispatch({ type: 'ADD_SUGGESTION', payload: suggestion });
+    async (suggestion: Suggestion) => {
+      await dispatch({ type: 'ADD_SUGGESTION', payload: suggestion });
+      dispatch({ type: 'SET_SELECTED', payload: suggestion.id });
     },
     [dispatch]
   );
@@ -79,7 +80,6 @@ export const useDataState = () => {
   );
 
   const toggleModal = useCallback(() => {
-    console.log('toggle modal');
     dispatch({ type: 'SET_MODAL' });
   }, [dispatch]);
 
