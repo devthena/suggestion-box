@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# Suggestion Box <img src="https://img.icons8.com/?size=100&id=123603&format=png&color=000000" alt="React" width="24" height="24" /> <img src="https://img.icons8.com/?size=100&id=nCj4PvnCO0tZ&format=png&color=000000" alt="TypeScript" width="24" height="24" /> <img src="https://img.icons8.com/?size=100&id=gFw7X5Tbl3ss&format=png&color=000000" alt="Material UI" width="24" height="24" /> <img src="https://img.icons8.com/?size=100&id=QBqFNfPPB2Kx&format=png&color=000000" alt="Sass" width="24" height="24" />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This web application lets users view and submit feedback and suggestions.
 
-## Available Scripts
+It is built using React with Create React App and TypeScript, leveraging Material UI for components and SCSS modules for styling. This application uses the Context API and the useReducer hook as the in-memory data provider.
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+- **View Comments** - Selecting a suggestion will display the thread of comments in a separate feed
+- **View Suggestions** - All suggestions will be displayed in a feed where users can click to see the details
+- **Generate Comment** - Add a randomly generated comment for a selected suggestion
+- **Generate Suggestion** - Add a randomly generated suggestion object to the feed
+- **Add Comments** - There is an input field for user to send a comment on a selected suggestion
+- **Add Suggetions** - User would be able to open a modal and submit a form to add a new suggestion
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To setup the application in your dev environment:
 
-### `yarn test`
+```bash
+  $ git clone https://github.com/devthena/suggestion-box.git
+  $ cd suggestion-box
+  $ yarn install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running and Testing
 
-### `yarn build`
+The app will be available at `http://localhost:3000`. To run locally:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  $ yarn start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+There are available tests for some components. To run these tests:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  $ yarn test
+```
 
-### `yarn eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The following are screenshots of the desktop and mobile views of the application
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Desktop Suggestion Feed](https://cdn.discordapp.com/attachments/1012125303897849896/1284056051515392000/image.png?ex=66e53de3&is=66e3ec63&hm=76668d16635f8513a1f22400e0bcfbd4c9af2dcefeaeebb8b7e14d8b72e4b306&)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Desktop Suggestion Create](https://cdn.discordapp.com/attachments/1012125303897849896/1284056051909660734/image.png?ex=66e53de3&is=66e3ec63&hm=de1d5606d07deaf95551e8e5b7c0cfe1015b9165876817e7d044b279545494d7&)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Desktop Suggestion Details](https://cdn.discordapp.com/attachments/1012125303897849896/1284056052467499062/image.png?ex=66e53de3&is=66e3ec63&hm=9cb857b267cdf7516de60c20d13635d4f1b73b8f54cc1d1acb0b326e591f3c25&)
 
-## Learn More
+![Mobile Suggestion Feed](https://cdn.discordapp.com/attachments/1012125303897849896/1284056052928610304/image.png?ex=66e53de3&is=66e3ec63&hm=b9fcbaaa74bb3e848119dfe171495ee24682f114e5b62cf206d69d9f5aa1d20e&)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Mobile Suggestion Create](https://cdn.discordapp.com/attachments/1012125303897849896/1284056053344112711/image.png?ex=66e53de3&is=66e3ec63&hm=baabf4c67227e0d1b9f707591f7c10966063f8c906ed9c14682099927e73e98f&)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Mobile Suggestion Details](https://cdn.discordapp.com/attachments/1012125303897849896/1284056053885173760/image.png?ex=66e53de3&is=66e3ec63&hm=4d20d96bf1b44ebf46e8068296163d032b2d41b31dfa2ba8d4bbd6aad4bd6e43&)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
